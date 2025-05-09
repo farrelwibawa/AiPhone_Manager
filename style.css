@@ -1,0 +1,388 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    line-height: 1.6;
+}
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+a {
+    text-decoration: none;
+    color: #008CBA;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #005f73;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #dbd7d7;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 5px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.navbar-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.navbar-brand span {
+    color: #000000;
+}
+
+/* Layout */
+.container {
+    width: 100%;
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Title */
+.title {
+    background-color: #b1afb0;
+    color: rgb(0, 0, 0);
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+}
+
+/* Buttons */
+button, .action-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+button {
+    background-color: #008CBA;
+}
+
+button:hover {
+    background-color: #005f73;
+    transform: translateY(-2px);
+}
+
+.create-btn {
+    background-color: #005EFF;
+}
+
+.create-btn:hover {
+    background-color: #0040ad;
+}
+
+.edit-btn {
+    background-color: #ffcc00;
+    margin-right: 10px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.edit-btn:hover {
+    background-color: #e5b200;
+}
+
+.delete-btn {
+    background-color: #ff0000;
+    padding: 8px 12px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.delete-btn:hover {
+    background-color: #be0505;
+}
+
+/* Button Centering */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* Form */
+.form {
+    background-color: #fff;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1500px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.form h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-align: left;
+    color: #333;
+}
+
+.form input[type="text"],
+.form input[type="number"],
+.form select,
+.form input[type="file"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    appearance: none;
+    background-color: #fff;
+}
+
+.form select {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="%23333" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 15px center;
+    background-size: 18px;
+    padding-right: 40px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.form select:focus {
+    outline: none;
+    border-color: #005EFF;
+    box-shadow: 0 0 5px rgba(0, 94, 255, 0.3);
+}
+
+.form input[type="file"] {
+    padding: 10px 15px;
+}
+
+.form button {
+    width: 100%;
+    background-color: #005EFF;
+    padding: 12px 15px;
+    margin-top: 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.form button:hover {
+    background-color: #0040ad;
+    transform: translateY(-2px);
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+    text-align: center;
+}
+
+thead th:first-child {
+    border-top-left-radius: 5px;
+}
+
+thead th:last-child {
+    border-top-right-radius: 5px;
+}
+
+tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 5px;
+}
+
+tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 5px;
+}
+
+th {
+    background-color: #b1afb0;
+    font-weight: 600;
+    color: #333;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+td img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+/* Footer */
+.footer {
+    background-color: #dbd7d7;
+    color: #000000;
+    padding: 15px 0;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.footer p {
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        padding: 10px;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .navbar-logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th, td {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    .form {
+        padding: 20px;
+    }
+
+    .form h2 {
+        font-size: 1.5rem;
+    }
+
+    .form input,
+    .form select,
+    .form button {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    .footer p {
+        font-size: 0.8rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .title {
+        font-size: 1.2rem;
+        padding: 8px;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .navbar-logo {
+        width: 25px;
+        height: 25px;
+    }
+
+    th, td {
+        font-size: 0.8rem;
+        padding: 6px 8px;
+    }
+
+    .form {
+        padding: 15px;
+    }
+
+    .form h2 {
+        font-size: 1.2rem;
+    }
+
+    .form input,
+    .form select,
+    .form button {
+        font-size: 0.8rem;
+        padding: 6px 8px;
+    }
+
+    .footer p {
+        font-size: 0.7rem;
+    }
+}
