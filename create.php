@@ -48,7 +48,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
     }
 
     if ($phone->create()) {
-        header("Location: index.php");
+        header("Location: list_product.php");
         exit;
     } else {
         echo "Unable to create product.";
@@ -69,7 +69,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
     <nav class="navbar">
         <div class="container">
             <div class="navbar-content">
-                <a href="index.php" class="navbar-brand">
+                <a href="list_product.php" class="navbar-brand">
                     <img src="assets\image\logo.png" alt="Logo" class="navbar-logo">
                     <span>AiPhone Manager</span>
                 </a>

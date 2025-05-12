@@ -55,7 +55,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update') {
     }
 
     if ($phone->update()) {
-        header("Location: index.php");
+        header("Location: list_product.php");
         exit;
     } else {
         echo "Gagal memperbarui data.";
@@ -77,7 +77,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update') {
     <nav class="navbar">
         <div class="container">
             <div class="navbar-content">
-                <a href="index.php" class="navbar-brand">
+                <a href="list_product.php" class="navbar-brand">
                     <img src="assets\image\logo.png" alt="Logo" class="navbar-logo">
                     <span>AiPhone Manager</span>
                 </a>
