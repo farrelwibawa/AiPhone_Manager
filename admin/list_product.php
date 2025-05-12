@@ -22,13 +22,30 @@ $stmt = $phone->readAll();
     <nav class="navbar">
         <div class="container">
             <div class="navbar-content">
-                <a href="index.php" class="navbar-brand">
+                <a href="list_product.php" class="navbar-brand">
                     <img src="assets\image\logo.png" alt="Logo" class="navbar-logo">
                     <span>AiPhone Manager</span>
                 </a>
+                <div class="navbar-links">
+                    <a href="list_product.php" class="nav-link active">Daftar Produk</a>
+                    <a href="list_order.php" class="nav-link">Daftar Pesanan</a>
+                    <a href="#" class="nav-link logout-link" onclick="showLogoutConfirm()">Keluar</a>
+                </div>
             </div>
         </div>
     </nav>
+
+    <!-- Logout Confirmation Modal -->
+    <div id="logoutConfirmModal" class="modal">
+        <div class="modal-content">
+            <h3>Konfirmasi Logout</h3>
+            <p>Apakah anda yakin ingin keluar?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn confirm-btn" onclick="confirmLogout()">Ya</button>
+                <button class="modal-btn cancel-btn" onclick="hideLogoutConfirm()">Tidak</button>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <h2>Daftar Produk</h2>
@@ -81,5 +98,28 @@ $stmt = $phone->readAll();
             <p>© <?php echo date('Y'); ?> Kelompok 8 - XI SIJA 1. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Ensure modal is hidden on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded, hiding logout modal');
+            document.getElementById('logoutConfirmModal').style.display = 'none';
+        });
+
+        function showLogoutConfirm() {
+            console.log('Showing logout confirmation modal');
+            document.getElementById('logoutConfirmModal').style.display = 'flex';
+        }
+
+        function hideLogoutConfirm() {
+            console.log('Hiding logout confirmation modal');
+            document.getElementById('logoutConfirmModal').style.display = 'none';
+        }
+
+        function confirmLogout() {
+            console.log('Confirming logout, redirecting to logout.php');
+            window.location.href = 'logout.php';
+        }
+    </script>
 </body>
 </html>

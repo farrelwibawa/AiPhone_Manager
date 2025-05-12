@@ -10,7 +10,7 @@ $phone = new Phone($db);
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $phone->aiphone_id = $_GET['id'];
     if ($phone->delete()) {
-        header("Location: index.php");
+        header("Location: list_product.php");
         exit;
     } else {
         echo "Unable to delete phone.";

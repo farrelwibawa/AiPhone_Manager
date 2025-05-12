@@ -14,6 +14,7 @@ if (!$conn) {
 
 $error = "";
 $success = false;
+$logout_success = isset($_GET['logout']) && $_GET['logout'] === 'success';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = mysqli_real_escape_string($conn, $_POST["username"]);
@@ -166,11 +167,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     <script>
-        // Show modal
+        // Show login success modal
         document.getElementById("successModal").style.display = "flex";
         // Redirect after 2 seconds
         setTimeout(function() {
             window.location.href = "list_product.php";
+        }, 2000);
+    </script>
+<?php endif; ?>
+
+<?php if ($logout_success): ?>
+    <div id="logoutSuccessModal" class="modal">
+        <div class="modal-content">
+            <h3>Logout Berhasil!</h3>
+            <p>Anda telah keluar.</p>
+        </div>
+    </div>
+    <script>
+        // Show logout success modal
+        document.getElementById("logoutSuccessModal").style.display = "flex";
+        // Hide modal after 2 seconds
+        setTimeout(function() {
+            document.getElementById("logoutSuccessModal").style.display = "none";
         }, 2000);
     </script>
 <?php endif; ?>
