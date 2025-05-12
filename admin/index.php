@@ -13,6 +13,7 @@ if (!$conn) {
 }
 
 $error = "";
+$success = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = mysqli_real_escape_string($conn, $_POST["username"]);
@@ -24,8 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_num_rows($result) == 1) {
         $_SESSION["admin"] = $name;
-        header("Location: list_product.php");
-        exit();
+        $success = true; // Set success flag to trigger modal
     } else {
         $error = "Nama admin atau password salah.";
     }
@@ -100,6 +100,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 14px;
             text-align: center;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 350px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .modal-content h3 {
+            color: #005eff;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -115,6 +157,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit">Login</button>
     </form>
 </div>
+
+<?php if ($success): ?>
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h3>Login Berhasil!</h3>
+            <p>Anda akan diarahkan ke halaman produk...</p>
+        </div>
+    </div>
+    <script>
+        // Show modal
+        document.getElementById("successModal").style.display = "flex";
+        // Redirect after 2 seconds
+        setTimeout(function() {
+            window.location.href = "list_product.php";
+        }, 2000);
+    </script>
+<?php endif; ?>
 
 </body>
 </html>
