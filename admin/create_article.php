@@ -2,10 +2,6 @@
 require_once 'Database.php';
 require_once 'Article.php';
 
-// Configure admin session variable (adjust these to match your system)
-$admin_session_key = 'admin'; // Change to your session key, e.g., 'role', 'admin_status', 'user_role'
-$admin_session_value = 1; // Change to expected value, e.g., 'admin', 1, 'true'
-
 $database = new Database();
 $db = $database->getConnection();
 $article = new Article($db);

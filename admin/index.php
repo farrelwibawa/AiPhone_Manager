@@ -153,8 +153,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php endif; ?>
     <form method="POST">
         <input type="text" name="username" placeholder="Nama Admin" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
+        <input type="password" name="password" placeholder="Kata Sandi" required>
+        <button type="submit">Masuk</button>
     </form>
 </div>
 
