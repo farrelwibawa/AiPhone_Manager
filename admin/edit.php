@@ -27,7 +27,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update') {
     $phone->Specification = htmlspecialchars(trim($_POST['Specification']));
 
     if (isset($_FILES['Image']) && $_FILES['Image']['error'] == 0) {
-        $targetDir = "uploads/";
+        $targetDir = "Uploads/";
         if (!is_dir($targetDir)) {
             mkdir($targetDir, 0755, true);
         }
@@ -99,6 +99,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update') {
             </select>
             <input type="text" name="Specification" value="<?= htmlspecialchars($phoneData['Specification']); ?>" placeholder="Spesifikasi" required>
             <input type="file" name="Image" accept="image/*">
+            <p>Gambar Saat Ini: <?= $phoneData['ImageURL'] ? htmlspecialchars(basename($phoneData['ImageURL'])) : 'Tidak ada gambar diunggah'; ?></p>
             <button type="submit" name="action" value="update">Simpan Perubahan</button>
         </form>
     </div>
