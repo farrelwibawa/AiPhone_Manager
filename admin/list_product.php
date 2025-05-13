@@ -80,7 +80,6 @@ $stmt = $phone->readAll();
                     <th>Nama</th>
                     <th>Harga</th>
                     <th>Penyimpanan</th>
-                    <th>Spesifikasi</th>
                     <th>Kelola</th>
                 </tr>
             </thead>
@@ -101,7 +100,6 @@ $stmt = $phone->readAll();
                         <td><?php echo htmlspecialchars($row['Name']); ?></td>
                         <td>Rp <?php echo number_format($row['Price'], 0, ',', '.'); ?></td>
                         <td><?php echo htmlspecialchars($row['Storage']); ?> GB</td>
-                        <td><?php echo htmlspecialchars($row['Specification']); ?></td>
                         <td>
                             <a href="edit.php?id=<?php echo $row['aiphone_id']; ?>" class="edit-btn" onclick="showLoading('Navigating to edit product')">✏️</a>
                             <a href="delete.php?id=<?php echo $row['aiphone_id']; ?>" class="delete-btn" onclick="return showDeleteConfirm(this, 'Barang berhasil dihapus')">🗑️</a>

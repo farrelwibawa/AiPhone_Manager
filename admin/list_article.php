@@ -78,8 +78,7 @@ $stmt = $article->readAll();
                 <tr>
                     <th>Gambar</th>
                     <th>Nama Artikel</th>
-                    <th>Tanggal Publish</th>
-                    <th>Isi Artikel</th>
+                    <th>Tanggal Publikasi</th>
                     <th>Kelola</th>
                 </tr>
             </thead>
@@ -99,7 +98,6 @@ $stmt = $article->readAll();
                         </td>
                         <td><?php echo htmlspecialchars($row['title']); ?></td>
                         <td><?php echo htmlspecialchars($row['publish_date']); ?></td>
-                        <td><?php echo htmlspecialchars(substr($row['content'], 0, 100)); ?>...</td>
                         <td>
                             <a href="edit_article.php?id=<?php echo $row['article_id']; ?>" class="edit-btn" onclick="showLoading('Navigating to edit article')">✏️</a>
                             <a href="delete_article.php?id=<?php echo $row['article_id']; ?>" class="delete-btn" onclick="return showDeleteConfirm(this, 'Artikel berhasil dihapus')">🗑️</a>

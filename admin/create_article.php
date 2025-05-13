@@ -2,11 +2,9 @@
 require_once 'Database.php';
 require_once 'Article.php';
 
-
 // Configure admin session variable (adjust these to match your system)
 $admin_session_key = 'admin'; // Change to your session key, e.g., 'role', 'admin_status', 'user_role'
 $admin_session_value = 1; // Change to expected value, e.g., 'admin', 1, 'true'
-
 
 $database = new Database();
 $db = $database->getConnection();
@@ -69,12 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="navbar-content">
                 <a href="list_article.php" class="navbar-brand">
                     <img src="assets/image/logo.png" alt="Logo" class="navbar-logo">
-                    <span>Article Manager</span>
+                    <span>AiPhone Manager</span>
                 </a>
                 <div class="navbar-links">
-                    <a href="list_article.php" class="nav-link active">Daftar Artikel</a>
-                    <a href="list_product.php" class="nav-link">Daftar Produk</a>
-                    <a href="#" class="nav-link logout-link" onclick="showLogoutConfirm()">Keluar</a>
+                    <a href="list_article.php" class="nav-link logout-link">Kembali</a>
                 </div>
             </div>
         </div>
@@ -96,13 +92,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="form">
             <h2>Tambahkan Artikel</h2>
             <form method="POST" enctype="multipart/form-data">
-                <label for="title">Judul Artikel</label>
-                <input type="text" name="title" required>
-                <label for="content">Isi Artikel</label>
-                <textarea name="content" rows="10" required></textarea>
-                <label for="image">Gambar Artikel</label>
-                <input type="file" name="image" accept="image/*">
-                <button type="submit" onclick="showLoading('Menyimpan artikel...')">Simpan</button>
+                <div class="form-group">
+                    <label for="title">Judul Artikel</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="content">Isi Artikel</label>
+                    <textarea id="content" name="content" class="article-content" required></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="file-input-wrapper">
+                        <label for="image" class="file-input-label">Gambar Artikel</label>
+                        <input type="file" id="image" name="image" accept="image/*">
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="create-btn" onclick="showLoading('Menyimpan artikel...')">Simpan</button>
+                </div>
             </form>
         </div>
     </div>

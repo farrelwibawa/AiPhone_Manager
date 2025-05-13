@@ -2,7 +2,6 @@
 require_once 'Database.php';
 require_once 'Article.php';
 
-
 $database = new Database();
 $db = $database->getConnection();
 $article = new Article($db);
@@ -86,12 +85,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="navbar-content">
                 <a href="list_article.php" class="navbar-brand">
                     <img src="assets/image/logo.png" alt="Logo" class="navbar-logo">
-                    <span>Article Manager</span>
+                    <span>AiPhone Manager</span>
                 </a>
                 <div class="navbar-links">
-                    <a href="list_article.php" class="nav-link active">Daftar Artikel</a>
-                    <a href="list_product.php" class="nav-link">Daftar Produk</a>
-                    <a href="#" class="nav-link logout-link" onclick="showLogoutConfirm()">Keluar</a>
+                    <a href="list_article.php" class="nav-link logout-link">Kembali</a>
                 </div>
             </div>
         </div>
@@ -113,19 +110,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="form">
             <h2>Edit Artikel</h2>
             <?php if (isset($message) && $status == 'error') : ?>
-                <p style="color: red;"><?php echo $message; ?></p>
+                <p class="popup-error"><?php echo $message; ?></p>
             <?php endif; ?>
             <form method="POST" enctype="multipart/form-data">
-                <label for="title">Judul Artikel</label>
-                <input type="text" name="title" value="<?php echo htmlspecialchars($title); ?>" required>
-                <label for="content">Isi Artikel</label>
-                <textarea name="content" rows="10" required><?php echo htmlspecialchars($content); ?></textarea>
-                <label for="image">Gambar Artikel</label>
-                <input type="file" name="image" accept="image/*">
-                <?php if ($image_url) : ?>
-                    <p>Gambar saat ini: <img src="<?php echo htmlspecialchars($image_url); ?>" alt="Current Image" width="100"></p>
-                <?php endif; ?>
-                <button type="submit" onclick="showLoading('Menyimpan perubahan...')">Simpan</button>
+                <div class="form-group">
+                    <label for="title">Judul Artikel</label>
+                    <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($title); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="content">Isi Artikel</label>
+                    <textarea id="content" name="content" class="article-content" required><?php echo htmlspecialchars($content); ?></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="file-input-wrapper">
+                        <label for="image" class="file-input-label">Gambar Artikel</label>
+                        <input type="file" id="image" name="image" accept="image/*">
+                    </div>
+                    <?php if ($image_url) : ?>
+                        <p class="current-image">Gambar saat ini: <img src="<?php echo htmlspecialchars($image_url); ?>" alt="Current Image" style="width: 100px; margin-top: 10px;"></p>
+                    <?php endif; ?>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="edit-btn" onclick="showLoading('Menyimpan perubahan...')">Simpan</button>
+                </div>
             </form>
         </div>
     </div>

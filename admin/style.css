@@ -414,6 +414,37 @@ button:hover {
     transform: translateY(-2px);
 }
 
+/* Custom styles for textarea */
+.form textarea.article-content {
+    width: 100%;
+    min-height: 300px; /* Increased height for long paragraphs */
+    padding: 12px 15px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+/* Custom styles for file input */
+.file-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0;
+}
+
+.file-input-label {
+    margin-top: 5px;
+    font-size: 1rem;
+    color: #000000;
+}
+
+.current-image {
+    margin-top: 10px;
+    color: #333;
+}
+
 /* Table */
 table {
     width: 100%;
@@ -578,9 +609,14 @@ td img {
 
     .form input,
     .form select,
+    .form textarea,
     .form button {
         font-size: 0.9rem;
         padding: 8px 10px;
+    }
+
+    .form textarea.article-content {
+        min-height: 200px;
     }
 
     .login-container {
@@ -668,9 +704,14 @@ td img {
 
     .form input,
     .form select,
+    .form textarea,
     .form button {
         font-size: 0.8rem;
         padding: 6px 8px;
+    }
+
+    .form textarea.article-content {
+        min-height: 150px;
     }
 
     .login-container {

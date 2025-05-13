@@ -77,10 +77,13 @@ if (isset($_POST['action']) && $_POST['action'] == 'update') {
     <nav class="navbar">
         <div class="container">
             <div class="navbar-content">
-                <a href="list_product.php" class="navbar-brand">
-                    <img src="assets\image\logo.png" alt="Logo" class="navbar-logo">
+                <a href="list_article.php" class="navbar-brand">
+                    <img src="assets/image/logo.png" alt="Logo" class="navbar-logo">
                     <span>AiPhone Manager</span>
                 </a>
+                <div class="navbar-links">
+                    <a href="list_product.php" class="nav-link logout-link">Kembali</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -93,9 +96,12 @@ if (isset($_POST['action']) && $_POST['action'] == 'update') {
             <input type="number" name="Price" value="<?= $phoneData['Price']; ?>" placeholder="Harga" required>
             <select name="Storage" required>
                 <option value="">Pilih Kapasitas</option>
+                <option value="64" <?= ($phoneData['Storage'] == '64') ? 'selected' : ''; ?>>64 GB</option>
                 <option value="128" <?= ($phoneData['Storage'] == '128') ? 'selected' : ''; ?>>128 GB</option>
                 <option value="256" <?= ($phoneData['Storage'] == '256') ? 'selected' : ''; ?>>256 GB</option>
                 <option value="512" <?= ($phoneData['Storage'] == '512') ? 'selected' : ''; ?>>512 GB</option>
+                <option value="1024" <?= ($phoneData['Storage'] == '1024') ? 'selected' : ''; ?>>1024 GB</option>
+                <option value="2048" <?= ($phoneData['Storage'] == '2048') ? 'selected' : ''; ?>>2048 GB</option>
             </select>
             <input type="text" name="Specification" value="<?= htmlspecialchars($phoneData['Specification']); ?>" placeholder="Spesifikasi" required>
             <input type="file" name="Image" accept="image/*">

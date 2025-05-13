@@ -69,10 +69,13 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
     <nav class="navbar">
         <div class="container">
             <div class="navbar-content">
-                <a href="list_product.php" class="navbar-brand">
-                    <img src="assets\image\logo.png" alt="Logo" class="navbar-logo">
+                <a href="list_article.php" class="navbar-brand">
+                    <img src="assets/image/logo.png" alt="Logo" class="navbar-logo">
                     <span>AiPhone Manager</span>
                 </a>
+                <div class="navbar-links">
+                    <a href="list_product.php" class="nav-link logout-link">Kembali</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -84,8 +87,12 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
             <input type="number" name="Price" placeholder="Harga" required>
             <select name="Storage" required>
                 <option value="">Pilih Kapasitas</option>
+                <option value="64">64 GB</option>
                 <option value="128">128 GB</option>
                 <option value="256">256 GB</option>
+                <option value="512">512 GB</option>
+                <option value="1024">1024 GB</option>
+                <option value="2048">2048 GB</option>
             </select>
             <input type="text" name="Specification" placeholder="Spesifikasi" required>
             <input type="file" name="Image" accept="image/*" required>
