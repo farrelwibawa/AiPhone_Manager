@@ -711,3 +711,18 @@ td img {
         padding: 15px;
     }
 }
+
+.comments-section {
+    margin-top: 20px;
+}
+.comment {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+.comment p {
+    margin: 5px 0;
+}
+.comment span {
+    color: #666;
+    font-size: 0.9em;
+}

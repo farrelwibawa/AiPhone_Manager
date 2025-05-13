@@ -1,0 +1,188 @@
+<?php
+require_once 'Database.php';
+require_once 'Article.php';
+
+
+$database = new Database();
+$db = $database->getConnection();
+$article = new Article($db);
+
+$article_id = isset($_GET['article_id']) ? (int)$_GET['article_id'] : 0;
+$article_title = '';
+
+if ($article_id > 0) {
+    $query = "SELECT title FROM articles WHERE article_id = :article_id";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(':article_id', $article_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($row) {
+        $article_title = $row['title'];
+    } else {
+        $message = "Artikel tidak ditemukan";
+        $status = "error";
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $comment_text = $_POST['comment_text'];
+    $user_name = $_SESSION['user_name'];
+
+    $query = "INSERT INTO comments (article_id, comment_text, user_name) VALUES (:article_id, :comment_text, :user_name)";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(':article_id', $article_id, PDO::PARAM_INT);
+    $stmt->bindParam(':comment_text', $comment_text);
+    $stmt->bindParam(':user_name', $user_name);
+
+    if ($stmt->execute()) {
+        $message = "Komentar berhasil ditambahkan";
+        $status = "success";
+    } else {
+        $message = "Gagal menambahkan komentar";
+        $status = "error";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambahkan Komentar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Success/Error Popup -->
+    <div id="successPopup" class="popup" aria-live="polite">
+        <div class="popup-content">
+            <p id="popupMessage"><?php echo isset($message) ? $message : ''; ?></p>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="list_article.php" class="navbar-brand">
+                    <img src="assets/image/logo.png" alt="Logo" class="navbar-logo">
+                    <span>Article Manager</span>
+                </a>
+                <div class="navbar-links">
+                    <a href="list_article.php" class="nav-link active">Daftar Artikel</a>
+                    <a href="list_product.php" class="nav-link">Daftar Produk</a>
+                    <a href="#" class="nav-link logout-link" onclick="showLogoutConfirm()">Keluar</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Logout Confirmation Modal -->
+    <div id="logoutConfirmModal" class="modal">
+        <div class="modal-content">
+            <h3>Konfirmasi Logout</h3>
+            <p>Apakah anda yakin ingin keluar?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn confirm-btn" onclick="confirmLogout()">Ya</button>
+                <button class="modal-btn cancel-btn" onclick="hideLogoutConfirm()">Tidak</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form">
+            <h2>Tambahkan Komentar untuk "<?php echo htmlspecialchars($article_title); ?>"</h2>
+            <?php if (isset($message) && $status == 'error') : ?>
+                <p style="color: red;"><?php echo $message; ?></p>
+            <?php endif; ?>
+            <form method="POST">
+                <label for="comment_text">Komentar</label>
+                <textarea name="comment_text" rows="5" required></textarea>
+                <button type="submit" onclick="showLoading('Menyimpan komentar...')">Kirim</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© <?php echo date('Y'); ?> Kelompok 8 - XI SIJA 1. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Show popup if message exists
+        <?php if (isset($message)) : ?>
+            document.addEventListener('DOMContentLoaded', function() {
+                showPopup('<?php echo $message; ?>', '<?php echo $status; ?>');
+                <?php if ($status == 'success') : ?>
+                    setTimeout(() => { window.location.href = 'list_article.php'; }, 1500);
+                <?php endif; ?>
+            });
+        <?php endif; ?>
+
+        // Ensure modals, spinner, and popup are hidden on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded, hiding modals and spinner');
+            document.getElementById('logoutConfirmModal').style.display = 'none';
+            document.getElementById('loadingSpinner').style.display = 'none';
+            <?php if (!isset($message)) : ?>
+                document.getElementById('successPopup').style.display = 'none';
+            <?php endif; ?>
+        });
+
+        function showLoading(message) {
+            console.log('Showing loading spinner');
+            document.body.setAttribute('aria-busy', 'true');
+            document.getElementById('loadingSpinner').style.display = 'flex';
+            window.currentActionMessage = message || 'Action completed';
+        }
+
+        function hideLoading() {
+            console.log('Hiding loading spinner');
+            document.body.setAttribute('aria-busy', 'false');
+            document.getElementById('loadingSpinner').style.display = 'none';
+            showPopup(window.currentActionMessage, window.currentActionStatus || 'success');
+        }
+
+        function showPopup(message, status = 'success') {
+            console.log('Showing popup with message:', message, 'status:', status);
+            const popup = document.getElementById('successPopup');
+            const popupContent = document.querySelector('.popup-content');
+            document.getElementById('popupMessage').textContent = message;
+            popup.classList.remove('popup-success', 'popup-error');
+            popup.classList.add(`popup-${status}`);
+            popup.style.display = 'flex';
+            setTimeout(hidePopup, 1500);
+        }
+
+        function hidePopup() {
+            console.log('Hiding popup');
+            document.getElementById('successPopup').style.display = 'none';
+        }
+
+        function showLogoutConfirm() {
+            console.log('Showing logout confirmation modal');
+            document.getElementById('logoutConfirmModal').style.display = 'flex';
+        }
+
+        function hideLogoutConfirm() {
+            console.log('Hiding logout confirmation modal');
+            document.getElementById('logoutConfirmModal').style.display = 'none';
+        }
+
+        function confirmLogout() {
+            console.log('Confirming logout, redirecting to logout.php');
+            showLoading('Logged out successfully');
+            setTimeout(() => {
+                hideLoading();
+                window.location.href = 'logout.php';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

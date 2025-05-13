@@ -162,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div id="successModal" class="modal">
         <div class="modal-content">
             <h3>Login Berhasil!</h3>
-            <p>Anda akan diarahkan ke halaman produk...</p>
+            <p>Anda akan diarahkan ke halaman admin...</p>
         </div>
     </div>
     <script>
@@ -170,7 +170,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         document.getElementById("successModal").style.display = "flex";
         // Redirect after 2 seconds
         setTimeout(function() {
-            window.location.href = "list_product.php";
+            window.location.href = "list_article.php";
         }, 2000);
     </script>
 <?php endif; ?>

@@ -1,20 +1,20 @@
 <?php
 require_once 'Database.php';
-require_once 'Phone.php';
+require_once 'Article.php';
 
 $database = new Database();
 $db = $database->getConnection();
-$phone = new Phone($db);
+$article = new Article($db);
 
-// Fetch all products
-$stmt = $phone->readAll();
+// Fetch all articles
+$stmt = $article->readAll();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Produk</title>
+    <title>Daftar Artikel</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -34,13 +34,13 @@ $stmt = $phone->readAll();
     <nav class="navbar">
         <div class="container">
             <div class="navbar-content">
-                <a href="list_product.php" class="navbar-brand">
-                    <img src="assets\image\logo.png" alt="Logo" class="navbar-logo">
+                <a href="list_article.php" class="navbar-brand">
+                    <img src="assets/image/logo.png" alt="Logo" class="navbar-logo">
                     <span>AiPhone Manager</span>
                 </a>
                 <div class="navbar-links">
-                    <a href="list_article.php" class="nav-link">Daftar Artikel</a>
-                    <a href="list_product.php" class="nav-link active">Daftar Produk</a>
+                    <a href="list_article.php" class="nav-link active">Daftar Artikel</a>
+                    <a href="list_product.php" class="nav-link">Daftar Produk</a>
                     <a href="#" class="nav-link logout-link" onclick="showLogoutConfirm()">Keluar</a>
                 </div>
             </div>
@@ -62,8 +62,8 @@ $stmt = $phone->readAll();
     <!-- Delete Confirmation Modal -->
     <div id="deleteConfirmModal" class="modal">
         <div class="modal-content">
-            <h3>Konfirmasi Hapus Produk</h3>
-            <p>Apakah anda yakin ingin menghapus produk ini?</p>
+            <h3>Konfirmasi Hapus Artikel</h3>
+            <p>Apakah anda yakin ingin menghapus artikel ini?</p>
             <div class="modal-buttons">
                 <button class="modal-btn confirm-btn" onclick="confirmDeleteAction()">Ya</button>
                 <button class="modal-btn cancel-btn" onclick="hideDeleteConfirm()">Tidak</button>
@@ -72,39 +72,37 @@ $stmt = $phone->readAll();
     </div>
 
     <div class="container">
-        <h2>Daftar Produk</h2>
+        <h2>Daftar Artikel</h2>
         <table border="1">
             <thead>
                 <tr>
                     <th>Gambar</th>
-                    <th>Nama</th>
-                    <th>Harga</th>
-                    <th>Penyimpanan</th>
-                    <th>Spesifikasi</th>
+                    <th>Nama Artikel</th>
+                    <th>Tanggal Publish</th>
+                    <th>Isi Artikel</th>
                     <th>Kelola</th>
                 </tr>
             </thead>
             <tbody>
                 <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
-                    <tr data-id="<?php echo $row['aiphone_id']; ?>">
+                    <tr data-id="<?php echo $row['article_id']; ?>">
                         <td>
                             <?php
-                            $imagePath = $row['ImageURL'];
+                            $imagePath = $row['image_url'];
                             $filePath = __DIR__ . '/' . $imagePath;
                             if (!empty($imagePath) && file_exists($filePath)) {
-                                echo '<img src="' . htmlspecialchars($imagePath) . '" alt="Product Image" width="50">';
+                                echo '<img src="' . htmlspecialchars($imagePath) . '" alt="Article Image" width="50">';
                             } else {
                                 echo 'No image available';
                             }
                             ?>
                         </td>
-                        <td><?php echo htmlspecialchars($row['Name']); ?></td>
-                        <td>Rp <?php echo number_format($row['Price'], 0, ',', '.'); ?></td>
-                        <td><?php echo htmlspecialchars($row['Storage']); ?> GB</td>
-                        <td><?php echo htmlspecialchars($row['Specification']); ?></td>
+                        <td><?php echo htmlspecialchars($row['title']); ?></td>
+                        <td><?php echo htmlspecialchars($row['publish_date']); ?></td>
+                        <td><?php echo htmlspecialchars(substr($row['content'], 0, 100)); ?>...</td>
                         <td>
-                            <a href="edit.php?id=<?php echo $row['aiphone_id']; ?>" class="edit-btn" onclick="showLoading('Navigating to edit product')">✏️</a>
-                            <a href="delete.php?id=<?php echo $row['aiphone_id']; ?>" class="delete-btn" onclick="return showDeleteConfirm(this, 'Barang berhasil dihapus')">🗑️</a>
+                            <a href="edit_article.php?id=<?php echo $row['article_id']; ?>" class="edit-btn" onclick="showLoading('Navigating to edit article')">✏️</a>
+                            <a href="delete_article.php?id=<?php echo $row['article_id']; ?>" class="delete-btn" onclick="return showDeleteConfirm(this, 'Artikel berhasil dihapus')">🗑️</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -113,7 +111,7 @@ $stmt = $phone->readAll();
     </div>
 
     <div class="button-container">
-        <a href="create.php" onclick="showLoading('Navigating to create product')"><button class="create-btn">Tambahkan Produk</button></a>
+        <a href="create_article.php" onclick="showLoading('Navigating to create article')"><button class="create-btn">Tambahkan Artikel</button></a>
     </div>
 
     <!-- Footer -->
