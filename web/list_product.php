@@ -39,8 +39,8 @@ $stmt = $phone->readAll();
                     <span>AiPhone Manager</span>
                 </a>
                 <div class="navbar-links">
-                    <a href="list_article.php" class="nav-link">Daftar Artikel</a>
-                    <a href="list_product.php" class="nav-link active">Daftar Produk</a>
+                    <a href="list_article.php" class="nav-link">Kelola Artikel</a>
+                    <a href="list_product.php" class="nav-link active">Kelola Produk</a>
                     <a href="#" class="nav-link logout-link" onclick="showLogoutConfirm()">Keluar</a>
                 </div>
             </div>
