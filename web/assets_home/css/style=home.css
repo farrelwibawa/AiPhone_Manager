@@ -1,0 +1,397 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #005EFF;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0040ad;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #005EFF;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Navbar */
+.navbar {
+    background-color: #dbd7d7;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 5px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.container {
+    width: 100%;
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.navbar-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.navbar-brand span {
+    color: #000000;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000000;
+    padding: 8px 12px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #a9a9a9;
+    border-radius: 5px;
+}
+
+.nav-link.active {
+    color: #005EFF;
+}
+
+/* Jumbotron Fullscreen (Shared across hero, article, products) */
+.jumbotron {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Fullscreen height */
+    overflow: hidden;
+    border-radius: 0; /* Optional: remove radius for fullscreen */
+    margin: 0; /* Remove margin if needed */
+    box-shadow: none; /* Optional: remove shadow for fullscreen look */
+}
+
+.jumbotron-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.jumbotron-img.active {
+    opacity: 1;
+}
+
+.jumbotron-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 1;
+}
+
+.jumbotron-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    color: #ffffff;
+    width: 90%;
+    max-width: 1000px;
+}
+
+.jumbotron-content h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.jumbotron-content h2 span {
+    color: #005EFF;
+}
+
+.jumbotron-content .centered-text {
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+
+/* About Section */
+.about {
+    padding: 20px;
+}
+
+/* Profile Section */
+.profile-me {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+.profile-me h1 {
+    margin-bottom: 20px;
+}
+
+.profile-me img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.profile-me h2 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #005EFF;
+}
+
+.profile-me h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.profile-me p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Action Button (used in JavaScript) */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #005EFF;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.action-btn:hover {
+    background-color: #0040ad;
+    transform: translateY(-2px);
+}
+
+/* Footer */
+.footer {
+    background-color: #dbd7d7;
+    color: #000000;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.footer p {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .navbar-logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .navbar-links {
+        gap: 10px;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+
+    .jumbotron {
+        height: 300px; /* Consistent height for all sections */
+    }
+
+    .jumbotron-content h2 {
+        font-size: 2rem;
+    }
+
+    .jumbotron-content .centered-text {
+        font-size: 1rem;
+    }
+
+    .profile-me h2 {
+        font-size: 1.5rem;
+    }
+
+    .profile-me h3 {
+        font-size: 0.9rem;
+    }
+
+    .profile-me p {
+        font-size: 0.8rem;
+    }
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #005EFF;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .navbar-logo {
+        width: 25px;
+        height: 25px;
+    }
+
+    .navbar-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-links {
+        margin-top: 10px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+    }
+
+    .jumbotron {
+        height: 200px; /* Consistent height for all sections */
+    }
+
+    .jumbotron-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .jumbotron-content .centered-text {
+        font-size: 0.9rem;
+    }
+
+    .spinner {
+        width: 30px;
+        height: 30px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #005EFF;
+    }
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #005EFF;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0047CC;
+  color: #b3acac;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}

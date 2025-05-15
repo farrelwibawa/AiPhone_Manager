@@ -1,0 +1,917 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    line-height: 1.6;
+}
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #008CBA;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #656666;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #005EFF;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success/Error Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1500;
+}
+
+.popup-content {
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 350px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-success .popup-content {
+    background-color: #fff;
+}
+
+.popup-error .popup-content {
+    background-color: #ffcccc;
+}
+
+.popup-content p {
+    font-size: 16px;
+    margin: 0;
+}
+
+.popup-success p {
+    color: #333;
+}
+
+.popup-error p {
+    color: #cc0000;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #dbd7d7;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 5px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.navbar-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.navbar-brand span {
+    color: #000000;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000000;
+    padding: 8px 12px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #a9a9a9;
+    border-radius: 5px;
+}
+
+.nav-link.active {
+    color: #005EFF;
+}
+
+.logout-link {
+    color: #ff0000;
+}
+
+.logout-link:hover {
+    color: #cc0000;
+    background-color: #a9a9a9;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#logoutConfirmModal, #deleteConfirmModal {
+    display: none;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 350px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content h3 {
+    color: #005EFF;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.modal-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.confirm-btn {
+    background-color: #005EFF;
+}
+
+.confirm-btn:hover {
+    background-color: #0040ad;
+    transform: translateY(-2px);
+}
+
+.cancel-btn {
+    background-color: #ff0000;
+}
+
+.cancel-btn:hover {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Layout */
+.container {
+    width: 100%;
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Centered Paragraph */
+.centered-text {
+    text-align: center;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 50px;
+    font-family: 'Poppins', sans-serif;
+    max-width: 1000px; /* Atur sesuai kebutuhan */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Title */
+.title {
+    background-color: #b1afb0;
+    color: rgb(0, 0, 0);
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+}
+
+/* Buttons */
+button, .action-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+button {
+    background-color: #008CBA;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+.create-btn {
+    background-color: #005EFF;
+}
+
+.create-btn:hover {
+    background-color: #0040ad;
+}
+
+.edit-btn {
+    background-color: #ffcc00;
+    margin-right: 10px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.edit-btn:hover {
+    background-color: #e5b200;
+}
+
+.delete-btn {
+    background-color: #ff0000;
+    padding: 8px 12px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.delete-btn:hover {
+    background-color: #be0505;
+}
+
+/* Button Centering */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* Form */
+.form {
+    background-color: #fff;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1500px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.form h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-align: left;
+    color: #333;
+}
+
+.form input[type="text"],
+.form input[type="number"],
+.form select,
+.form input[type="file"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    appearance: none;
+    background-color: #fff;
+}
+
+.form select {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="%23333" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 15px center;
+    background-size: 18px;
+    padding-right: 40px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.form select:focus {
+    outline: none;
+    border-color: #005EFF;
+    box-shadow: 0 0 5px rgba(0, 94, 255, 0.3);
+}
+
+.form input[type="file"] {
+    padding: 10px 15px;
+}
+
+.form button {
+    width: 100%;
+    background-color: #005EFF;
+    padding: 12px 15px;
+    margin-top: 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.form button:hover {
+    background-color: #0040ad;
+    transform: translateY(-2px);
+}
+
+/* Custom styles for textarea */
+.form textarea.article-content {
+    width: 100%;
+    min-height: 300px;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+/* Custom styles for file input */
+.file-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0;
+}
+
+.file-input-label {
+    margin-top: 5px;
+    font-size: 1rem;
+    color: #000000;
+}
+
+.current-image {
+    margin-top: 10px;
+    color: #333;
+}
+
+/* Article List */
+.article-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.article-item {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.article-image-container {
+    flex: 0 0 150px;
+    margin-right: 20px;
+}
+
+.article-image-wrapper {
+    width: 100%;
+    height: 100px;
+}
+
+.article-image-wrapper img.article-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.article-image-wrapper .no-image {
+    color: #333;
+    font-size: 1rem;
+    text-align: center;
+    margin: 0;
+    line-height: 100px;
+}
+
+.article-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.article-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+.article-date {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Footer */
+.footer {
+    background-color: #dbd7d7;
+    color: #000000;
+    padding: 15px 0;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.footer p {
+    font-size: 0.9rem;
+}
+
+/* Login Container */
+.login-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+.login-container h2 {
+    font-size: 28px;
+    color: #222;
+    margin-bottom: 25px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #005eff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-container button:hover {
+    background-color: #0044cc;
+}
+
+.login-container p {
+    color: red;
+    margin-bottom: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        padding: 10px;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .navbar-logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .navbar-links {
+        gap: 10px;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+
+    .article-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .article-image-container {
+        flex: none;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .article-image-wrapper {
+        height: 150px;
+    }
+
+    .article-image-wrapper img.article-image {
+        height: 100%;
+    }
+
+    .article-image-wrapper .no-image {
+        line-height: 150px;
+    }
+
+    .article-title {
+        font-size: 1.2rem;
+    }
+
+    .article-date {
+        font-size: 0.8rem;
+    }
+
+    .form {
+        padding: 20px;
+    }
+
+    .form h2 {
+        font-size: 1.5rem;
+    }
+
+    .form input,
+    .form select,
+    .form textarea,
+    .form button {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    .form textarea.article-content {
+        min-height: 200px;
+    }
+
+    .login-container {
+        padding: 20px;
+    }
+
+    .login-container h2 {
+        font-size: 24px;
+    }
+
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+        font-size: 14px;
+    }
+
+    .login-container button {
+        font-size: 14px;
+    }
+
+    .footer p {
+        font-size: 0.8rem;
+    }
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #005EFF;
+    }
+
+    .popup-content {
+        max-width: 300px;
+        padding: 15px;
+    }
+
+    .modal-content {
+        max-width: 300px;
+        padding: 20px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .title {
+        font-size: 1.2rem;
+        padding: 8px;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .navbar-logo {
+        width: 25px;
+        height: 25px;
+    }
+
+    .navbar-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-links {
+        margin-top: 10px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+    }
+
+    .article-item {
+        padding: 8px;
+    }
+
+    .article-image-wrapper {
+        height: 120px;
+    }
+
+    .article-image-wrapper img.article-image {
+        height: 100%;
+    }
+
+    .article-image-wrapper .no-image {
+        line-height: 120px;
+    }
+
+    .article-title {
+        font-size: 1rem;
+    }
+
+    .article-date {
+        font-size: 0.7rem;
+    }
+
+    .form {
+        padding: 15px;
+    }
+
+    .form h2 {
+        font-size: 1.2rem;
+    }
+
+    .form input,
+    .form select,
+    .form textarea,
+    .form button {
+        font-size: 0.8rem;
+        padding: 6px 8px;
+    }
+
+    .form textarea.article-content {
+        min-height: 150px;
+    }
+
+    .login-container {
+        padding: 15px;
+    }
+
+    .login-container h2 {
+        font-size: 20px;
+    }
+
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+        font-size: 13px;
+    }
+
+    .login-container button {
+        font-size: 13px;
+    }
+
+    .footer p {
+        font-size: 0.7rem;
+    }
+
+    .spinner {
+        width: 30px;
+        height: 30px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #005EFF;
+    }
+
+    .popup-content {
+        max-width: 250px;
+        padding: 10px;
+    }
+
+    .modal-content {
+        max-width: 250px;
+        padding: 15px;
+    }
+}
+
+.comments-section {
+    margin-top: 20px;
+}
+.comment {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+.comment p {
+    margin: 5px 0;
+}
+.comment span {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Article Detail */
+.article-detail {
+    background-color: #fcf6f6;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1500px;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: justify;
+}
+
+.article-detail img.article-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    display: block;
+}
+
+.article-detail .no-image {
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.publish-date {
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.article-content p {
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+@media only screen and (max-width: 768px) {
+    .article-detail {
+        padding: 20px;
+    }
+
+    .article-detail img.article-image {
+        max-height: 300px;
+    }
+
+    .publish-date {
+        font-size: 0.8rem;
+    }
+
+    .article-content p {
+        font-size: 0.9rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .article-detail {
+        padding: 15px;
+    }
+
+    .article-detail img.article-image {
+        max-height: 200px;
+    }
+
+    .publish-date {
+        font-size: 0.7rem;
+    }
+
+    .article-content p {
+        font-size: 0.8rem;
+    }
+}

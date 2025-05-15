@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome - AiPhone Manager</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Feather Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets_home/css/style=home.css" />
+</head>
+<body>
+
+  <!-- Loading Spinner -->
+  <div id="loadingSpinner" class="loading-spinner">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <a href="view_article.php" class="navbar-brand">
+          <img src="assets/image/logo.png" alt="Logo" class="navbar-logo" />
+          <span>Daily AiPhone</span>
+        </a>
+        <div class="navbar-links">
+          <a href="home=user.html" class="nav-link active">Beranda</a>
+          <a href="view_article=user.php" class="nav-link">Daftar Artikel</a>
+          <a href="view_product=user.php" class="nav-link">Daftar Produk</a>
+          <a href="about=user.html" class="nav-link">Tentang Kami</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Jumbotron Fullscreen -->
+  <section id="home" class="jumbotron fullscreen">
+    <img src="assets_home/img/hero1.jpg" class="jumbotron-img active" alt="Hero Image 1" />
+    <img src="assets_home/img/hero2.jpg" class="jumbotron-img" alt="Hero Image 2" />
+    <img src="assets_home/img/hero3.jpg" class="jumbotron-img" alt="Hero Image 3" />
+    <div class="jumbotron-overlay"></div>
+    <div class="jumbotron-content">
+      <h2>Selamat Datang di Daily AiPhone</h2>
+      <p class="centered-text">
+        Daily AiPhone adalah sumber terpercaya untuk informasi terkini seputar iPhone. Kami menyediakan artikel menarik, panduan penggunaan, serta daftar harga terbaru dari berbagai model iPhone.
+      </p>
+      <div class="button-container">
+        <a href="#article" class="btn btn-primary" onclick="smoothScroll(event, 'article')">Jelajahi</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Jumbotron Fullscreen -->
+  <section id="article" class="jumbotron fullscreen">
+    <img src="assets_home/img/article1.jpg" class="jumbotron-img active" alt="Article Image 1" />
+    <img src="assets_home/img/article2.jpg" class="jumbotron-img" alt="Article Image 2" />
+    <img src="assets_home/img/article3.jpg" class="jumbotron-img" alt="Article Image 3" />
+    <div class="jumbotron-overlay"></div>
+    <div class="jumbotron-content">
+      <h2>Artikel Unggulan Kami</h2>
+      <p class="centered-text">
+        Dapatkan berbagai artikel informatif seputar iPhone, mulai dari tips penggunaan, ulasan produk, hingga berita terbaru.
+      </p>
+      <div class="button-container">
+        <a href="view_article=user.php" class="btn btn-primary")">Lihat Artikel</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Jumbotron Fullscreen -->
+  <section id="products" class="jumbotron fullscreen">
+    <img src="assets_home/img/products1.jpg" class="jumbotron-img active" alt="Product Image 1" />
+    <img src="assets_home/img/products2.jpg" alt="Product Image 2" />
+    <img src="assets_home/img/products3.jpg" class="jumbotron-img" alt="Product Image 3" />
+    <div class="jumbotron-overlay"></div>
+    <div class="jumbotron-content">
+      <h2>Produk Unggulan Kami</h2>
+      <p class="centered-text">
+        Lihat daftar harga produk handphone iPhone terbaru dan terlengkap. Kami menyajikan katalog produk lengkap dengan harga terkini.
+      </p>
+      <div class="button-container">
+        <a href="view_product=user.php" class="btn btn-primary")">Lihat Produk</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Kelompok 8 - XI SIJA 1. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    // Feather Icons initialization
+    feather.replace();
+
+    // Smooth scrolling function
+    function smoothScroll(event, targetId) {
+      event.preventDefault();
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // Loading spinner and jumbotron image rotation
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('loadingSpinner').style.display = 'none';
+      const jumbotrons = document.querySelectorAll('.jumbotron');
+      jumbotrons.forEach(jumbo => {
+        const images = jumbo.querySelectorAll('.jumbotron-img');
+        let i = 0;
+        setInterval(() => {
+          images[i].classList.remove('active');
+          i = (i + 1) % images.length;
+          images[i].classList.add('active');
+        }, 5000);
+      });
+    });
+  </script>
+</body>
+</html>

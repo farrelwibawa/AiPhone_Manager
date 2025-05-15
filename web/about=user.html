@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style=about.css">
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="view_article.php" class="navbar-brand">
+                    <img src="assets/image/logo.png" alt="Logo" class="navbar-logo" />
+                    <span>Daily AiPhone</span>
+                </a>
+                <div class="navbar-links">
+                    <a href="home=user.html" class="nav-link">Beranda</a>
+                    <a href="view_article=user.php" class="nav-link">Daftar Artikel</a>
+                    <a href="view_product=user.php" class="nav-link">Daftar Produk</a>
+                    <a href="about=user.html" class="nav-link active">Tentang Kami</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="about container">
+        <h2>Tentang Kami</h2>
+        <p class="centered-text">
+            Kami dari Kelompok 8 - XI SIJA 1 merancang website bernama <strong>Daily AiPhone</strong> yang menampilkan artikel informatif dan daftar katalog produk iPhone.
+            Selain itu, kami juga mengembangkan <strong>AiPhone Manager</strong> sebuah platform yang memudahkan pengelolaan artikel dan daftar katalog tersebut.
+            Proyek ini kami kerjakan dengan penuh dedikasi untuk mencapai hasil yang maksimal dan bermanfaat bagi pengguna.
+        </p>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="profile-me container">
+        <h1>Anggota Kelompok</h1>
+        <div class="profile-grid">
+            <!-- Farrel -->
+            <div class="profile-card">
+                <img src="img_about/farrel.jpg" alt="Farrel Profile" class="profile-img" />
+                <h2>Farrel Muhammad Rizky Wibawa</h2>
+                <h3>Nomor Presensi: 11</h3>
+                <p>Kelas: XI SIJA 1</p>
+            </div>
+            <!-- Jonathan -->
+            <div class="profile-card">
+                <img src="img_about/jonathan.jpg" alt="Jonathan Profile" class="profile-img" />
+                <h2>Jonathan Christian Putra</h2>
+                <h3>Nomor Presensi: 17</h3>
+                <p>Kelas: XI SIJA 1</p>
+            </div>
+            <!-- Kemal -->
+            <div class="profile-card">
+                <img src="img_about/kemal.jpg" alt="Kemal Profile" class="profile-img" />
+                <h2>Kemal Dwipa Adhyaksa</h2>
+                <h3>Nomor Presensi: 18</h3>
+                <p>Kelas: XI SIJA 1</p>
+            </div>
+            <!-- Sisca -->
+            <div class="profile-card">
+                <img src="img_about/sisca.jpg" alt="Sisca Profile" class="profile-img" />
+                <h2>Sisca Krissa <br>Cicelia</h2>
+                <h3>Nomor Presensi: 35</h3>
+                <p>Kelas: XI SIJA 1</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Kelompok 8 - XI SIJA 1. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        // Feather Icons initialization
+        feather.replace();
+
+        // Loading spinner
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('loadingSpinner').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
